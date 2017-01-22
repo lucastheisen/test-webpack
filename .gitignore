@@ -1,6 +1,8 @@
+.vscode
 .idea
 node_modules
 jspm_packages
+dist
 npm-debug.*
 link-checker-results.txt
 app/**/*.js
