@@ -5,9 +5,9 @@ let webpack = require('webpack');
 
 module.exports = {
     entry: {
-        main: './app/main.ts',
-        polyfills: './app/polyfills.ts',
-        vendor: './app/vendor.ts',
+        main: './src/main/spa/app/main.ts',
+        polyfills: './src/main/spa/app/polyfills.ts',
+        vendor: './src/main/spa/app/vendor.ts',
     },
     module: {
         rules: [
@@ -35,7 +35,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './index.html'
+            template: './src/main/spa/index.html'
         })
     ],
     resolve: {
