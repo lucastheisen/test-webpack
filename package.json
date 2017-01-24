@@ -1,7 +1,7 @@
 {
-  "name": "angular-quickstart",
+  "name": "test-webpack",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Converting Angular 2 QuickStart to webpack",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server\" ",
     "e2e": "tsc && concurrently \"http-server -s\" \"protractor protractor.config.js\" --kill-others --success first",
@@ -12,7 +12,10 @@
     "test-once": "tsc && karma start karma.conf.js --single-run",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "webpack": "webpack"
+    "clean": "rimraf dist",
+    "webpack": "webpack",
+    "webpack:c": "rimraf dist && webpack",
+    "webpack:w": "webpack-dev-server --open"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +30,6 @@
     "@angular/platform-browser-dynamic": "~2.4.0",
     "@angular/router": "~3.4.0",
     "angular-in-memory-web-api": "~0.2.4",
-    "systemjs": "0.19.40",
     "core-js": "^2.4.1",
     "rxjs": "5.0.1",
     "zone.js": "^0.7.4"
@@ -38,6 +40,8 @@
     "awesome-typescript-loader": "^3.0.0-beta.18",
     "canonical-path": "0.0.2",
     "concurrently": "^3.1.0",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.5",
     "html-webpack-plugin": "^2.26.0",
     "http-server": "^0.9.0",
     "jasmine-core": "~2.4.1",
@@ -48,8 +52,10 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "lite-server": "^2.2.2",
     "lodash": "^4.16.4",
+    "node-sass": "^4.3.0",
     "protractor": "~4.0.14",
     "rimraf": "^2.5.4",
+    "sass-loader": "^4.1.1",
     "source-map-loader": "^0.1.6",
     "tslint": "^3.15.1",
     "typescript": "^2.1.5",

@@ -1,0 +1,9 @@
+$font-stack: Arial, Helvetica, sans-serif;
+$primary-color: lightpink;
+
+h1 {
+  background-color: $primary-color;
+  color: #369;
+  font-family: $font-stack;
+  font-size: 250%;
+}

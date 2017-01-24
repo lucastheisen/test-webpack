@@ -1,4 +1,5 @@
 'use strict';
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let path = require('path');
 let webpack = require('webpack');
@@ -16,6 +17,22 @@ module.exports = {
                 loader: 'awesome-typescript-loader',
                 exclude: /node_modules/,
             },
+            {
+                test: /\.css$/,
+                include: path.resolve(__dirname, 'src', 'main', 'spa'),
+                exclude: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
+                loader: ExtractTextPlugin.extract({
+                    loader: 'css-loader',
+                })
+            },
+            {
+                test: /\.scss$/,
+                include: path.resolve(__dirname, 'src', 'main', 'spa'),
+                exclude: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
+                loader: ExtractTextPlugin.extract({
+                    loader: ['css-loader', 'sass-loader'],
+                })
+            }
         ]
     },
     output: {
@@ -36,6 +53,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/main/spa/index.html'
+        }),
+        new ExtractTextPlugin({
+            filename: "styles/[name].[contenthash].css"
         })
     ],
     resolve: {
