@@ -14,19 +14,24 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.css$/,
                 include: path.resolve(__dirname, 'src', 'main', 'spa'),
-                exclude: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
-                loader: ExtractTextPlugin.extract({
-                    loader: 'css-loader',
-                })
+                loader: ['awesome-typescript-loader', 'angular2-template-loader'],
             },
             {
-                test: /\.scss$/,
+                test: /\.html$/,
+                include: path.resolve(__dirname, 'src', 'main', 'spa'),
+                loader: 'html-loader'
+            },
+            {
+                // component styling
+                // https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-SCSS-in-components
+                test: /\.css|\.scss$/,
+                include: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
+                loader: ['raw-loader', 'sass-loader']
+            },
+            {
+                // application styling
+                test: /\.css|\.scss$/,
                 include: path.resolve(__dirname, 'src', 'main', 'spa'),
                 exclude: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
                 loader: ExtractTextPlugin.extract({

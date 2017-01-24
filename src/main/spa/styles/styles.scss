@@ -1,8 +1,12 @@
 $font-stack: Arial, Helvetica, sans-serif;
 $primary-color: lightpink;
 
-h1 {
+section {
   background-color: $primary-color;
+  padding: 10px
+}
+
+h1 {
   color: #369;
   font-family: $font-stack;
   font-size: 250%;

@@ -4,6 +4,11 @@ import '../styles/styles.scss';
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Goodbye Mr. {{name}}</h1>`,
+  template: `
+    <section>
+      <h1>Hello, {{name}}</h1>
+      <my-data>Loading data...</my-data>
+    </section>
+  `,
 })
 export class AppComponent  { name = 'Angular'; }
