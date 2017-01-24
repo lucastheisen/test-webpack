@@ -1,5 +1,4 @@
-$font-stack: Arial, Helvetica, sans-serif;
-$primary-color: lightpink;
+@import "./common.scss";
 
 section {
   background-color: $primary-color;

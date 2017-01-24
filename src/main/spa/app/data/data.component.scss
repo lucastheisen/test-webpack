@@ -1,5 +1,5 @@
-$color: lightyellow;
+@import "../../styles/common.scss";
 
 div {
-    background-color: $color;
+    background-color: $accent-color;
 }
