@@ -23,11 +23,15 @@ module.exports = {
                 loader: 'html-loader'
             },
             {
+                test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+                loader: 'file-loader?name=assets/[name].[ext]'
+            },
+            {
                 // component styling
                 // https://github.com/AngularClass/angular2-webpack-starter/wiki/How-to-include-SCSS-in-components
                 test: /\.css|\.scss$/,
                 include: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
-                loader: ['raw-loader', 'sass-loader']
+                loader: ['raw-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
             },
             {
                 // application styling
@@ -35,7 +39,7 @@ module.exports = {
                 include: path.resolve(__dirname, 'src', 'main', 'spa'),
                 exclude: path.resolve(__dirname, 'src', 'main', 'spa', 'app'),
                 loader: ExtractTextPlugin.extract({
-                    loader: ['css-loader', 'sass-loader'],
+                    loader: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
                 })
             }
         ]
@@ -60,7 +64,7 @@ module.exports = {
             template: './src/main/spa/index.html'
         }),
         new ExtractTextPlugin({
-            filename: "styles/[name].[contenthash].css"
+            filename: "[name].css"
         })
     ],
     resolve: {

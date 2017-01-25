@@ -3,3 +3,11 @@
 div {
     background-color: $accent-color;
 }
+
+p {
+    background-image: url(assets/angular.png);
+    background-repeat: no-repeat;
+    background-size: 50px;
+    line-height: 50px;
+    padding-left: 70px;
+}
