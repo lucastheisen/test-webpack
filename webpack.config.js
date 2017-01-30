@@ -1,4 +1,5 @@
 'use strict';
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let path = require('path');
@@ -6,6 +7,7 @@ let webpack = require('webpack');
 
 module.exports = {
     entry: {
+        cesium: './src/main/spa/app/viewer-cesium/cesium.ts',
         main: './src/main/spa/app/main.ts',
         polyfills: './src/main/spa/app/polyfills.ts',
         vendor: './src/main/spa/app/vendor.ts',
@@ -41,6 +43,14 @@ module.exports = {
                 loader: ExtractTextPlugin.extract({
                     loader: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
                 })
+            },
+            {
+                // cesium styling
+                test: /\.css$/,
+                include: path.resolve(__dirname, 'node_modules', 'cesium'),
+                loader: ExtractTextPlugin.extract({
+                    loader: ['css-loader?sourceMap'],
+                })
             }
         ]
     },
@@ -57,7 +67,7 @@ module.exports = {
             {}
         ),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['main', 'vendor', 'polyfills']
+            name: ['main', 'vendor', 'cesium', 'polyfills']
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -65,9 +75,18 @@ module.exports = {
         }),
         new ExtractTextPlugin({
             filename: "[name].css"
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                 from: path.resolve(__dirname, 'node_modules', 'cesium', 'Build', 'Cesium'),
+                 to: 'cesium'
+            }
+        ])
     ],
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        alias: {
+            cesium: path.resolve(__dirname, 'node_modules', 'cesium', 'Build', 'CesiumUnminified')
+        },
+        extensions: [".tsx", ".ts", ".js"],
     },
 };
